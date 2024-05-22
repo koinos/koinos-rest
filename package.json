@@ -1,6 +1,10 @@
 {
   "name": "koinos-rest-api",
   "version": "0.1.0",
+  "license": "GNU General Public License 3.0",
+  "author": "Roamin Ro",
+  "contributors": ["Greg Thomas Andes", "Koinos Group <contact@koinos.group>"],
+  "repository": "https://github.com/koinos/koinos-rest",
   "private": true,
   "scripts": {
     "dev": "next dev",

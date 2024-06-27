@@ -1,3 +1,4 @@
+import { utils } from 'koilib';
 import { getContract, getContractId, processArgs } from '@/utils/contracts'
 import qs from 'qs'
 import { AppError, handleError, getErrorMessage } from '@/utils/errors'
@@ -76,9 +77,15 @@ export async function GET(
         )
       }
 
-      const { result } = await contract.functions[method](args)
+      // If the method is a write method, return the operation
+      if (!contract.abi!.methods[method].read_only!) {
+        return Response.json(await contract.encodeOperation({name: method, args}))
+      }
+      else {
+        const { result } = await contract.functions[method](args)
 
-      return Response.json(result)
+        return Response.json(result)
+      }
     } catch (error) {
       throw new AppError(getErrorMessage(error as Error))
     }
@@ -154,9 +161,15 @@ export async function POST(
         )
       }
 
-      const { result } = await contract.functions[method](args)
+      // If the method is a write method, return the operation
+      if (!contract.abi!.methods[method].read_only!) {
+        return Response.json(await contract.encodeOperation({name: method, args}))
+      }
+      else {
+        const { result } = await contract.functions[method](args)
 
-      return Response.json(result)
+        return Response.json(result)
+      }
     } catch (error) {
       throw new AppError(getErrorMessage(error as Error))
     }

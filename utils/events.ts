@@ -23,11 +23,11 @@ export async function decodeEvents(events: EventData[]) {
         try {
           // patch event name for non-compliant token contracts
           if (event.name.endsWith('token.burn_event')) {
-            event.name = 'koinos.contracts.token.burn_event'
+            event.name = 'token.burn_event'
           } else if (event.name.endsWith('token.mint_event')) {
-            event.name = 'koinos.contracts.token.mint_event'
+            event.name = 'token.mint_event'
           } else if (event.name.endsWith('token.transfer_event')) {
-            event.name = 'koinos.contracts.token.transfer_event'
+            event.name = 'token.transfer_event'
           } else if (event.name.endsWith('token.approve')) {
             event.name = 'token.approve_event'
           } else if (event.name.endsWith('token.burn')) {

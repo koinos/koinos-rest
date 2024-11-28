@@ -1,6 +1,6 @@
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
-import { getFTContract } from '@/utils/tokens'
+import { getTokenContract } from '@/utils/tokens'
 import { utils } from 'koilib'
 
 /**
@@ -8,8 +8,8 @@ import { utils } from 'koilib'
  * /v1/token/{contract_id}/total_supply:
  *   get:
  *     tags: [Fungible Tokens]
- *     description: Returns the total supply of the fungible token
- *     summary: Retrieves the total supply of a specific fungible token.
+ *     description: Returns the total supply of the token
+ *     summary: Retrieves the total supply of a specific token.
  *     parameters:
  *      - name: contract_id
  *        in: path
@@ -36,7 +36,7 @@ export async function GET(request: Request, { params }: { params: { contract_id:
   try {
     const contract_id = await getContractId(params.contract_id)
 
-    const contract = getFTContract(contract_id)
+    const contract = getTokenContract(contract_id)
 
     try {
       const { result: totalSupplyRes } = await contract.functions.total_supply()

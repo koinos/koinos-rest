@@ -5,7 +5,6 @@ import { AppError } from './errors'
 import { getAddress } from './addresses'
 import { getProvider } from './providers'
 import { config } from '@/app.config'
-import { getFTContract } from './tokens'
 import KapAbi from '@/abis/kap.json'
 import { createRedisInstance } from '@/utils/redis'
 

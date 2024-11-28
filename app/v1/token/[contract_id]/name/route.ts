@@ -1,14 +1,14 @@
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
-import { getFTContract } from '@/utils/tokens'
+import { getTokenContract } from '@/utils/tokens'
 
 /**
  * @swagger
  * /v1/token/{contract_id}/name:
  *   get:
  *     tags: [Fungible Tokens]
- *     description: Returns the name of the fungible token
- *     summary: Retrieves the name of a specific fungible token.
+ *     description: Returns the name of the token.
+ *     summary: Retrieves the name of a token.
  *     parameters:
  *      - name: contract_id
  *        in: path
@@ -35,7 +35,7 @@ export async function GET(request: Request, { params }: { params: { contract_id:
   try {
     const contract_id = await getContractId(params.contract_id)
 
-    const contract = getFTContract(contract_id)
+    const contract = getTokenContract(contract_id)
 
     try {
       const { result } = await contract.functions.name()

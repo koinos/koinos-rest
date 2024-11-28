@@ -7,13 +7,13 @@ import protobufjs from 'protobufjs'
 
 /**
  * @swagger
- * /v1/contract/{contract_id}/abi:
+ * /v1/contract/{contract_name_or_id}/abi:
  *   get:
  *     tags: [Contracts]
  *     description: Returns the contract's ABI
  *     summary: Retrieves the ABI (Application Binary Interface) of the specified contract, detailing its methods and protobuf definitions.
  *     parameters:
- *      - name: contract_id
+ *      - name: contract_name_or_id
  *        schema:
  *          type: string
  *        in: path
@@ -28,7 +28,7 @@ import protobufjs from 'protobufjs'
  *            schema:
  *              $ref: '#/components/schemas/ContractAbi'
  *            example:
- *              contract_id: "15DJN4a8SgrbGhhGksSBASiSYjGnMU8dGL"
+ *              contract_name_or_id: "15DJN4a8SgrbGhhGksSBASiSYjGnMU8dGL"
  *              abi:
  *                methods:
  *                  name:
@@ -54,9 +54,9 @@ import protobufjs from 'protobufjs'
  *                                # ... (other types)
  */
 
-export async function GET(request: Request, { params }: { params: { contract_id: string } }) {
+export async function GET(request: Request, { params }: { params: { contract_name_or_id: string } }) {
   try {
-    const contract_id = await getContractId(params.contract_id)
+    const contract_id = await getContractId(params.contract_name_or_id)
     const provider = getProvider()
 
     const response = await provider.call<{ meta?: { abi: string } }>(

@@ -4,13 +4,13 @@ import { AppError, handleError, getErrorMessage } from '@/utils/errors'
 
 /**
  * @swagger
- * /v1/contract/{contract_id}/{method}:
+ * /v1/contract/{contract_name_or_id}/{method}:
  *   get:
  *     tags: [Contracts]
  *     description: Read the contract contract using the method and arguments provided
  *     summary: Executes a specified 'read' method on the given contract and returns the result, without making any state changes.
  *     parameters:
- *      - name: contract_id
+ *      - name: contract_name_or_id
  *        in: path
  *        schema:
  *          type: string
@@ -43,10 +43,10 @@ import { AppError, handleError, getErrorMessage } from '@/utils/errors'
 
 export async function GET(
   request: Request,
-  { params }: { params: { contract_id: string; method: string } }
+  { params }: { params: { contract_name_or_id: string; method: string } }
 ) {
   try {
-    const contract_id = await getContractId(params.contract_id)
+    const contract_id = await getContractId(params.contract_name_or_id)
 
     const method = params.method
 
@@ -89,12 +89,12 @@ export async function GET(
 
 /**
  * @swagger
- * /v1/contract/{contract_id}/{method}:
+ * /v1/contract/{contract_name_or_id}/{method}:
  *   post:
  *     tags: [Contracts]
  *     description: Read the contract using the method and arguments provided
  *     parameters:
- *      - name: contract_id
+ *      - name: contract_name_or_id
  *        in: path
  *        schema:
  *          type: string
@@ -130,10 +130,10 @@ export async function GET(
 
 export async function POST(
   request: Request,
-  { params }: { params: { contract_id: string; method: string } }
+  { params }: { params: { contract_name_or_id: string; method: string } }
 ) {
   try {
-    const contract_id = await getContractId(params.contract_id)
+    const contract_id = await getContractId(params.contract_name_or_id)
 
     const method = params.method
     let args = await request.json()

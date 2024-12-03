@@ -14,6 +14,15 @@ function getContract(): Contract {
   })
 }
 
+export async function resolveNickname(name: string): Promise<string | undefined> {
+  const contract = getContract()
+  const { result } = await contract.functions.get_address({
+    value: name.replace('@', '')
+  })
+
+  return result?.value
+}
+
 export async function getNicknameOwner(name: string): Promise<string | undefined> {
   const contract = getContract()
   const token_id = `0x${utils.toHexString(new TextEncoder().encode(name.replace('@', '')))}`

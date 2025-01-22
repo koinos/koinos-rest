@@ -2,7 +2,7 @@ import { getKAPName } from '@/services/kap'
 import { Serializer, utils } from 'koilib'
 import { AppError } from './errors'
 import { getProvider } from './providers'
-import { getNicknameOwner } from '@/services/nicknames'
+import { resolveNickname } from '@/services/nicknames'
 
 let contractAddresses: Record<string, string> = {};
 
@@ -31,10 +31,10 @@ export async function getAddress(str: string) {
 
   // nicknames
   else if (str.startsWith('@')) {
-    const owner = await getNicknameOwner(str)
-    if (owner) {
-      contractAddresses[str] = owner;
-      return owner
+    const address = await resolveNickname(str)
+    if (address) {
+      contractAddresses[str] = address;
+      return address
     }
   }
 

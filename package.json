@@ -1,9 +1,12 @@
 {
   "name": "koinos-rest-api",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "license": "GNU General Public License 3.0",
   "author": "Roamin Ro",
-  "contributors": ["Greg Thomas Andes", "Koinos Group <contact@koinos.group>"],
+  "contributors": [
+    "Greg Thomas Andes",
+    "Koinos Group <contact@koinos.group>"
+  ],
   "repository": "https://github.com/koinos/koinos-rest",
   "private": true,
   "scripts": {
@@ -24,7 +27,7 @@
     "encoding": "^0.1.13",
     "framer-motion": "^10.16.5",
     "ioredis": "^5.3.2",
-    "koilib": "^5.6.1",
+    "koilib": "8.1.0",
     "next": "latest",
     "next-swagger-doc": "^0.4.0",
     "protobufjs": "^7.2.5",

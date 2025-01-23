@@ -1,3 +1,4 @@
+import { utils } from 'koilib';
 import { getContract, getContractId, processArgs } from '@/utils/contracts'
 import qs from 'qs'
 import { AppError, handleError, getErrorMessage } from '@/utils/errors'
@@ -7,8 +8,10 @@ import { AppError, handleError, getErrorMessage } from '@/utils/errors'
  * /v1/contract/{contract_id}/{method}:
  *   get:
  *     tags: [Contracts]
- *     description: Read the contract contract using the method and arguments provided
- *     summary: Executes a specified 'read' method on the given contract and returns the result, without making any state changes.
+ *     summary: Call the contract contract using the method and arguments provided.
+ *     description: Executes a specified method on the given contract. 
+ *              If the method is a read call, the result is returned, without making any state changes.
+ *              If the method is a write call, the associated operation is returned for inclusion in a transaction and no state changes are made.
  *     parameters:
  *      - name: contract_id
  *        in: path
@@ -76,9 +79,15 @@ export async function GET(
         )
       }
 
-      const { result } = await contract.functions[method](args)
+      // If the method is a write method, return the operation
+      if (!contract.abi!.methods[method].read_only!) {
+        return Response.json(await contract.encodeOperation({name: method, args}))
+      }
+      else {
+        const { result } = await contract.functions[method](args)
 
-      return Response.json(result)
+        return Response.json(result)
+      }
     } catch (error) {
       throw new AppError(getErrorMessage(error as Error))
     }
@@ -92,7 +101,10 @@ export async function GET(
  * /v1/contract/{contract_id}/{method}:
  *   post:
  *     tags: [Contracts]
- *     description: Read the contract using the method and arguments provided
+ *     summary: Call the contract contract using the method and arguments provided.
+ *     description: Executes a specified method on the given contract. 
+ *              If the method is a read call, the result is returned, without making any state changes.
+ *              If the method is a write call, the associated operation is returned for inclusion in a transaction and no state changes are made.
  *     parameters:
  *      - name: contract_id
  *        in: path
@@ -154,9 +166,15 @@ export async function POST(
         )
       }
 
-      const { result } = await contract.functions[method](args)
+      // If the method is a write method, return the operation
+      if (!contract.abi!.methods[method].read_only!) {
+        return Response.json(await contract.encodeOperation({name: method, args}))
+      }
+      else {
+        const { result } = await contract.functions[method](args)
 
-      return Response.json(result)
+        return Response.json(result)
+      }
     } catch (error) {
       throw new AppError(getErrorMessage(error as Error))
     }

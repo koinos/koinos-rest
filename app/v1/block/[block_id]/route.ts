@@ -6,13 +6,13 @@ import { decodeOperations } from '@/utils/operations'
 
 /**
  * @swagger
- * /v1/block/{block_id}:
+ * /v1/block/{block_id_or_num}:
  *   get:
  *     tags: [Blocks]
  *     description: Input a block id or number. Return data about that block and its receipt.
  *     summary: Return data about that block and its receipt.
  *     parameters:
- *      - name: block_id
+ *      - name: block_id_or_num
  *        in: path
  *        schema:
  *          type: string
@@ -110,7 +110,7 @@ import { decodeOperations } from '@/utils/operations'
  *                compute_bandwidth_charged: "58900"
  */
 
-export async function GET(request: Request, { params }: { params: { block_id: string } }) {
+export async function GET(request: Request, { params }: { params: { block_id_or_num: string } }) {
   try {
     const provider = getProvider()
 
@@ -120,7 +120,7 @@ export async function GET(request: Request, { params }: { params: { block_id: st
     const decode_operations = searchParams.get('decode_operations') !== 'false'
     const decode_events = searchParams.get('decode_events') !== 'false'
 
-    const block_id = params.block_id
+    const block_id = params.block_id_or_num
     let blocks
     if (block_id.startsWith('0x')) {
       blocks = await provider.call<{

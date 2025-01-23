@@ -53,7 +53,7 @@ export async function GET(request: Request, { params }: { params: { contract_id:
 
     const {value: metadataRes} = await provider.invokeGetContractMetadata(contract_id)
 
-    return Response.json({ contract_id, ...metadataRes })
+    return Response.json({ contract_id, ...(metadataRes as object) })
   } catch (error) {
     return handleError(error as Error)
   }

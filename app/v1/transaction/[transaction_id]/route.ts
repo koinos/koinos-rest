@@ -2,7 +2,7 @@ import { AppError, handleError } from '@/utils/errors'
 import { decodeEvents } from '@/utils/events'
 import { decodeOperations } from '@/utils/operations'
 import { getProvider } from '@/utils/providers'
-import { BlockJson, TransactionReceipt } from 'koilib'
+import { BlockJson, TransactionJson, TransactionReceipt } from 'koilib'
 
 /**
  * @swagger
@@ -130,6 +130,7 @@ import { BlockJson, TransactionReceipt } from 'koilib'
  *                timestamp: "1700541332810"
  *              containing_blocks:
  *                - "0x122029c7af4c3bb0dea862c875cc12fe8e0d79fcd8490a8388dcb0ceeb6c16ac5d85"
+ *              irreversible: true
  *              receipt:
  *                id: "0x1220552e1d8798d7174053229c740a9908fffb7b4cbe7b9fff4605943723540a940f"
  *                payer: "17CmTGbriMyCypF6WdTRJGhzur3SoJXAG5"
@@ -163,46 +164,99 @@ export async function GET(request: Request, { params }: { params: { transaction_
     const response = await provider.getTransactionsById([params.transaction_id])
 
     if (!response.transactions?.length) {
-      throw new AppError('transaction does not exist')
+      const pending_transactions = await provider.call<{
+        pending_transactions: {
+          transaction: TransactionJson,
+          disk_storage_used: string,
+          network_bandwidth_used: string,
+          compute_bandwidth_used: string,
+          system_disk_storage_used: string,
+          system_network_bandwidth_used: string,
+          system_compute_bandwidth_used: string,
+        }[]
+      }>('mempool.get_pending_transactions_by_id', {transaction_ids: [params.transaction_id]})
+
+      if (!pending_transactions.pending_transactions?.length) {
+        throw new AppError('transaction does not exist')
+      }
+
+      let transaction = pending_transactions.pending_transactions[0].transaction
+
+      if (decode_operations && transaction.operations) {
+        transaction.operations = await decodeOperations(
+          transaction.operations
+        )
+      }
+
+      return Response.json({
+        transaction,
+        irreversible: false,
+      })
     }
+
+    const head_info= await provider.getHeadInfo()
 
     const [transaction] = response.transactions
 
-    if (return_receipt) {
-      const blocks = await provider.call<{
+    const blocks_by_id = await provider.call<{
+      block_items: {
+        block_id: string
+        block_height: string
+        block: BlockJson
+        receipt: {
+          transaction_receipts: TransactionReceipt[]
+        }
+      }[]
+    }>('block_store.get_blocks_by_id', {
+      return_block: true,
+      return_receipt,
+      block_ids: transaction.containing_blocks
+    })
+
+    for (const block_item of blocks_by_id.block_items) {
+      if (block_item.block === undefined)
+        continue
+
+      const blocks_by_height = await provider.call<{
         block_items: {
           block_id: string
           block_height: string
-          block: BlockJson
           receipt: {
             transaction_receipts: TransactionReceipt[]
           }
         }[]
-      }>('block_store.get_blocks_by_id', {
-        return_block: true,
-        return_receipt: true,
-        block_ids: transaction.containing_blocks
+      }>('block_store.get_blocks_by_height', {
+        return_block: false,
+        return_receipt: false,
+        num_blocks: 1,
+        ancestor_start_height: block_item.block_height,
+        head_block_id: head_info.head_topology.id
       })
 
-      if (blocks.block_items.length) {
-        for (const blockItem of blocks.block_items) {
-          if (blockItem.block !== undefined) {
-            // @ts-ignore dynamically add the timestamp field to result
-            transaction.transaction.timestamp = blockItem.block.header!.timestamp!
+      if (blocks_by_height.block_items.length == 0)
+        continue
 
-            const receipt = blockItem.receipt.transaction_receipts.find(
-              (receipt) => receipt.id === transaction.transaction.id
-            )
+      if (block_item.block_id != blocks_by_height.block_items[0].block_id)
+        continue
 
-            if (receipt) {
-              if (decode_events && receipt.events) {
-                receipt.events = await decodeEvents(receipt.events)
-              }
+      // @ts-ignore dynamically add the timestamp field to result
+      transaction.transaction.timestamp = block_item.block.header!.timestamp!
 
-              // @ts-ignore dynamically add the receipt to result
-              transaction.receipt = receipt
-            }
+      // @ts-ignore dynamically add the irreversible field to result
+      transaction.irreversible = blocks_by_height.block_items[0].block_height <= head_info.last_irreversible_block
+
+      if (return_receipt) {
+        const receipt = block_item.receipt.transaction_receipts.find(
+          (receipt) => receipt.id === transaction.transaction.id
+        )
+
+        if (receipt) {
+          if (decode_events && receipt.events) {
+            receipt.events = await decodeEvents(receipt.events)
           }
+
+          // @ts-ignore dynamically add the receipt to result
+          transaction.receipt = receipt
         }
       }
     }

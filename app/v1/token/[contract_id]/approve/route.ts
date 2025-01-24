@@ -9,7 +9,7 @@ import { utils } from 'koilib'
  *   get:
  *     tags: [Fungible Tokens]
  *     description: Returns a serialized token approve operation.
- *     summary: Returns a serialized token approve opertaion.
+ *     summary: Returns a serialized token approve operation.
  *     parameters:
  *      - name: contract_id
  *        in: path
@@ -68,7 +68,7 @@ export async function GET(
       const contract = await getTokenContract(contract_id)
 
       const { searchParams } = new URL(request.url)
-      
+
       const owner = searchParams.get('owner')
       const spender = searchParams.get('spender')
       const value = searchParams.get('value')

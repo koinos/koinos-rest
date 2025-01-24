@@ -9,7 +9,7 @@ import { utils } from 'koilib'
  *   get:
  *     tags: [Fungible Tokens]
  *     description: Returns a serialized token mint operation.
- *     summary: Returns a serialized token mint opertaion.
+ *     summary: Returns a serialized token mint operation.
  *     parameters:
  *      - name: contract_id
  *        in: path
@@ -61,11 +61,11 @@ export async function GET(
       const contract = await getTokenContract(contract_id)
 
       const { searchParams } = new URL(request.url)
-      
+
       const to = searchParams.get('to')
       const value = searchParams.get('value')
       const memo = searchParams.get('memo')
-  
+
       try {
         const {result: decimalsRes} = await contract.functions.decimals()
 

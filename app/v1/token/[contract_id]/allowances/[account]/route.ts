@@ -82,7 +82,7 @@ export async function GET(
     const limit = searchParams.get('limit')
 
     try {
-      let { result: getAllowancesRes } = await contract.functions.get_allowance({
+      let { result: getAllowancesRes } = await contract.functions.get_allowances({
         owner: account,
         start,
         limit
@@ -97,9 +97,9 @@ export async function GET(
         })
       }
       else  {
-        getAllowancesRes = {owner: account}; 
+        getAllowancesRes = {owner: account};
       }
-      
+
       return Response.json(getAllowancesRes)
     } catch (error) {
       throw new AppError(getErrorMessage(error as Error))

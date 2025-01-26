@@ -6,11 +6,11 @@ import { utils } from 'koilib'
 
 /**
  * @swagger
- * /v1/token/{contract_id}/balance/{account}:
+ * /v1/token/{contract_id}/allowance/{account}/{spender}:
  *   get:
  *     tags: [Fungible Tokens]
- *     description: Returns the token balance for a specific account
- *     summary: Retrieves the balance of a token for a given account.
+ *     description: Returns the token allowance for an account and spender.
+ *     summary: Returns the token allowance for a an account and spender.
  *     parameters:
  *      - name: contract_id
  *        in: path
@@ -26,9 +26,16 @@ import { utils } from 'koilib'
  *        description: Koinos address of the account, name of the account (for system contracts) or KAP name
  *        required: true
  *        example: 1NsQbH5AhQXgtSNg1ejpFqTi2hmCWz1eQS
+ *      - name: spender
+ *        in: path
+ *        schema:
+ *          type: string
+ *        description: Koinos address of the spender, name of the account (for system contracts) or KAP name
+ *        required: true
+ *        example: 16cMcG2J5YdSUEV2GYgMs163iFe7c1uhEj
  *     responses:
  *       200:
- *        description: Account balance
+ *        description: Allowance
  *        content:
  *          application/json:
  *            schema:
@@ -42,22 +49,24 @@ import { utils } from 'koilib'
 
 export async function GET(
   request: Request,
-  { params }: { params: { contract_id: string; account: string } }
+  { params }: { params: { contract_id: string; account: string, spender: string } }
 ) {
   try {
     const contract_id = await getContractId(params.contract_id)
     const contract = getTokenContract(contract_id)
 
     const account = await getAccountAddress(params.account)
+    const spender = await getAccountAddress(params.spender)
 
     try {
-      const { result: balanceRes } = await contract.functions.balance_of({
-        owner: account
+      const { result: allowanceRes } = await contract.functions.allowance({
+        owner: account,
+        spender: spender
       })
       const { result: decimalRes } = await contract.functions.decimals()
 
       return Response.json({
-        value: utils.formatUnits(balanceRes!.value, decimalRes!.value)
+        value: utils.formatUnits(allowanceRes!.value, decimalRes!.value)
       })
     } catch (error) {
       throw new AppError(getErrorMessage(error as Error))

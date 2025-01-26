@@ -2,13 +2,14 @@ import { Contract } from 'koilib'
 import ftAbi from '@/abis/ft.json'
 import nftAbi from '@/abis/nft.json'
 import { getProvider } from './providers'
+import { fixAbi } from './contracts'
 
-export function getFTContract(id: string) {
+export function getTokenContract(id: string) {
   return new Contract({
     id,
     provider: getProvider(),
     // @ts-ignore
-    abi: ftAbi
+    abi: fixAbi(ftAbi)
   })
 }
 
@@ -17,6 +18,6 @@ export function getNFTContract(id: string) {
     id,
     provider: getProvider(),
     // @ts-ignore
-    abi: nftAbi
+    abi: fixAbi(nftAbi)
   })
 }

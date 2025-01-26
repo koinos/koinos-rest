@@ -1,14 +1,14 @@
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
-import { getFTContract } from '@/utils/tokens'
+import { getTokenContract } from '@/utils/tokens'
 
 /**
  * @swagger
  * /v1/token/{contract_id}/decimals:
  *   get:
  *     tags: [Fungible Tokens]
- *     description: Returns the number of decimals for a fungible token
- *     summary: Fetches the decimal precision used by a specific fungible token.
+ *     description: Returns the number of decimals for a token.
+ *     summary: Fetches the decimal precision used by a token.
  *     parameters:
  *      - name: contract_id
  *        in: path
@@ -36,7 +36,7 @@ export async function GET(request: Request, { params }: { params: { contract_id:
   try {
     const contract_id = await getContractId(params.contract_id)
 
-    const contract = getFTContract(contract_id)
+    const contract = getTokenContract(contract_id)
 
     try {
       const { result } = await contract.functions.decimals()

@@ -1,7 +1,7 @@
 import { getAccountAddress } from '@/utils/addresses'
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
-import { getFTContract } from '@/utils/tokens'
+import { getTokenContract } from '@/utils/tokens'
 import { utils } from 'koilib'
 
 /**
@@ -44,7 +44,7 @@ export async function GET(
 ) {
   try {
     const contract_id = await getContractId(params.contract_id)
-    const contract = getFTContract(contract_id)
+    const contract = getTokenContract(contract_id)
 
     const account = await getAccountAddress(params.account)
 

@@ -1,6 +1,6 @@
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
-import { getFTContract } from '@/utils/tokens'
+import { getTokenContract } from '@/utils/tokens'
 import { utils } from 'koilib'
 
 /**
@@ -8,8 +8,8 @@ import { utils } from 'koilib'
  * /v1/token/{contract_id}/info:
  *   get:
  *     tags: [Fungible Tokens]
- *     description: Returns the fungible token's information such as name, symbol, decimals, and total supply
- *     summary: Provides comprehensive information about a specific fungible token, including name, symbol, and total supply.
+ *     description: Returns the token's information such as name, symbol, decimals, and total supply
+ *     summary: Provides comprehensive information about a token, including name, symbol, and total supply.
  *     parameters:
  *      - name: contract_id
  *        in: path
@@ -20,7 +20,7 @@ import { utils } from 'koilib'
  *        example: 15DJN4a8SgrbGhhGksSBASiSYjGnMU8dGL
  *     responses:
  *       200:
- *        description: Fungible Token Information
+ *        description: Token Information
  *        content:
  *          application/json:
  *            schema:
@@ -46,7 +46,19 @@ export async function GET(request: Request, { params }: { params: { contract_id:
   try {
     const contract_id = await getContractId(params.contract_id)
 
-    const contract = getFTContract(contract_id)
+    const contract = getTokenContract(contract_id)
+
+    try {
+      const { result: infoRes } = await contract.functions.get_info()
+      const { result: totalSupplyRes } = await contract.functions.total_supply()
+
+      return Response.json({
+        name: infoRes!.name,
+        symbol: infoRes!.symbol,
+        decimals: infoRes!.decimals,
+        total_supply: utils.formatUnits(totalSupplyRes!.value, infoRes!.decimals)
+      })
+    } catch (error) { /* Do nothing, token does not support optional `get_info` method */ }
 
     try {
       const { result: nameRes } = await contract.functions.name()

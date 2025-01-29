@@ -75,12 +75,19 @@ function protoTypeToSwaggerType(type: any, abi: any) : any {
         throw new AppError("Koinos does not support floating points in smart contracts");
       default:
       {
-        swaggerType.type = "object"
-
         const fieldType = findTypeFromABI(value.type, abi)
 
-        if (fieldType)
+        if (fieldType && fieldType.properties)
+        {
+          // Object case
           swaggerType.properties = protoTypeToSwaggerType(fieldType, abi);
+          swaggerType.type = "object"
+        }
+        else if (fieldType && fieldType.values)
+        {
+          // Enum case
+          swaggerType.type = "string"
+        }
 
         break;
       }
@@ -142,7 +149,7 @@ export async function getContractSwagger(contract_id: string) : Promise< any >
 
       const argsType = findTypeFromABI(value.argument, contract.abi);
 
-      if (!argsType.fields)
+      if (!argsType || !argsType.fields)
         continue;
 
       const swaggerType = protoTypeToSwaggerType(argsType, contract.abi);

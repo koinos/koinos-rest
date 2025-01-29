@@ -1,9 +1,7 @@
-import { getContractId } from '@/utils/contracts'
+import { fixAbi, getContractId } from '@/utils/contracts'
 import { AppError, handleError } from '@/utils/errors'
 import { getProvider } from '@/utils/providers'
 import { Abi } from 'koilib'
-import { convert } from '@roamin/koinos-pb-to-proto'
-import protobufjs from 'protobufjs'
 
 /**
  * @swagger
@@ -70,49 +68,11 @@ export async function GET(request: Request, { params }: { params: { contract_id:
       throw new AppError(`abi not available for contract ${contract_id}`)
     }
 
-    const abi: Abi = {
+    let abi: Abi = {
       ...JSON.parse(response.meta.abi)
     }
 
-    Object.keys(abi.methods).forEach((name) => {
-      abi!.methods[name] = {
-        ...abi!.methods[name]
-      }
-
-      //@ts-ignore this is needed to be compatible with "old" abis
-      if (abi.methods[name]['entry-point']) {
-        //@ts-ignore this is needed to be compatible with "old" abis
-        abi.methods[name].entry_point = parseInt(
-          //@ts-ignore this is needed to be compatible with "old" abis
-          String(abi.methods[name]['entry-point'])
-        )
-      }
-
-      //@ts-ignore this is needed to be compatible with "old" abis
-      if (abi.methods[name]['read-only'] !== undefined) {
-        //@ts-ignore this is needed to be compatible with "old" abis
-        abi.methods[name].read_only = abi.methods[name]['read-only']
-      }
-    })
-
-    if (abi.types) {
-      const pd = convert(abi?.types)
-      if (pd.length) {
-        try {
-          const root = new protobufjs.Root()
-          for (const desc of pd) {
-            const parserResult = protobufjs.parse(desc.definition, {
-              keepCase: true
-            })
-            root.add(parserResult.root)
-          }
-          // extract the first nested object
-          abi.koilib_types = root.toJSON().nested?.['']
-        } catch (error) {
-          // ignore the parsing errors
-        }
-      }
-    }
+    abi = fixAbi(abi)
 
     return Response.json({ contract_id, ...response.meta, abi })
   } catch (error) {

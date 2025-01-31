@@ -16,7 +16,7 @@ import { getNFTContract } from '@/utils/tokens'
  *          type: string
  *        description: The Koinos address of the NFT contract.
  *        required: true
- *        example: 1N2AhqGGticZ8hYmwNPWoroEBvTp3YGsLW
+ *        example: "@koinos.fun"
  *     responses:
  *       200:
  *        description: URI of the Non Fungible Token
@@ -28,7 +28,7 @@ import { getNFTContract } from '@/utils/tokens'
  *                value:
  *                  type: string
  *            example:
- *              value: "https://ogrex.io/api/rex/"
+ *              value: "https://www.koinos.fun/metadata"
  */
 
 export async function GET(request: Request, { params }: { params: { contract_id: string } }) {
@@ -40,7 +40,9 @@ export async function GET(request: Request, { params }: { params: { contract_id:
     try {
       const { result } = await contract.functions.uri()
 
-      return Response.json(result)
+      if (result)
+        return Response.json(result)
+      return Response.json({})
     } catch (error) {
       throw new AppError(getErrorMessage(error as Error))
     }

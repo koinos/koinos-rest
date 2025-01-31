@@ -1,3 +1,4 @@
+import { getAccountAddress } from '@/utils/addresses';
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
 import { getNFTContract } from '@/utils/tokens'
@@ -16,14 +17,14 @@ import { getNFTContract } from '@/utils/tokens'
  *          type: string
  *        description: The Koinos address of the NFT contract.
  *        required: true
- *        example: 1N2AhqGGticZ8hYmwNPWoroEBvTp3YGsLW
+ *        example: "@koinos.fun"
  *      - name: account
  *        in: path
  *        schema:
  *          type: string
  *        description: The Koinos address of the account to query.
  *        required: true
- *        example: 1DrBJQkSK1Zh7JW7XjQxcRU96NBVnew7iR
+ *        example: 1A6T7vmfwyGx2LD11RREwtcoXrLxG6q2rz
  *     responses:
  *       200:
  *        description: Account Balance in NFTs
@@ -46,14 +47,16 @@ export async function GET(
     const contract_id = await getContractId(params.contract_id)
     const contract = getNFTContract(contract_id)
 
-    const account = await getContractId(params.account)
+    const owner = await getAccountAddress(params.account)
 
     try {
       const { result: balanceRes } = await contract.functions.balance_of({
-        owner: account
+        owner
       })
 
-      return Response.json(balanceRes)
+      if (balanceRes)
+        return Response.json(balanceRes)
+      return Response.json({value: "0"})
     } catch (error) {
       throw new AppError(getErrorMessage(error as Error))
     }

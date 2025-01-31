@@ -3,6 +3,7 @@ import { AppError, getErrorMessage, handleError } from '@/utils/errors'
 import { decodeEvents } from '@/utils/events'
 import { decodeOperations } from '@/utils/operations'
 import { getProvider } from '@/utils/providers'
+import { requireParameters } from '@/utils/validation'
 import { BlockHeaderJson, EventData, TransactionJson, TransactionReceipt } from 'koilib'
 import { NextRequest, NextResponse } from 'next/server'
 
@@ -173,6 +174,8 @@ export async function GET(request: NextRequest, { params }: { params: { account:
     try {
       const provider = getProvider()
       const { searchParams } = new URL(request.url)
+      requireParameters(searchParams, 'limit');
+
       const limit = searchParams.get('limit')
       const seqNum = searchParams.get('sequence_number')
       const ascending = searchParams.get('ascending') !== 'false'

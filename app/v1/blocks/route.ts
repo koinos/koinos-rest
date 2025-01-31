@@ -3,6 +3,7 @@ import { AppError, handleError } from '@/utils/errors'
 import { getProvider } from '@/utils/providers'
 import { decodeEvents } from '@/utils/events'
 import { decodeOperations } from '@/utils/operations'
+import { requireParameters } from '@/utils/validation'
 
 /**
  * @swagger
@@ -141,6 +142,8 @@ export async function GET(request: Request) {
     const provider = getProvider()
 
     const { searchParams } = new URL(request.url)
+    requireParameters(searchParams, 'limit');
+
     const start = searchParams.get('start')
     const limit = searchParams.get('limit')
     const return_block = searchParams.get('return_block') !== 'false'

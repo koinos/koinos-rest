@@ -1,588 +1,173 @@
 {
   "methods": {
     "name": {
-      "argument": "collections.name_arguments",
-      "return": "collections.string_object",
-      "description": "Returns the token's name",
+      "argument": "koinos.standards.kcs5.name_arguments",
+      "return": "koinos.standards.kcs5.name_result",
+      "description": "Returns the collection name",
       "entry_point": 2191741823,
       "read_only": true
     },
-    "uri": {
-      "argument": "collections.uri_arguments",
-      "return": "collections.string_object",
-      "description": "Returns the token's uri",
-      "entry_point": 1894111158,
-      "read_only": true
-    },
     "symbol": {
-      "argument": "collections.symbol_arguments",
-      "return": "collections.string_object",
-      "description": "Returns the token's symbol",
+      "argument": "koinos.standards.kcs5.symbol_arguments",
+      "return": "koinos.standards.kcs5.symbol_result",
+      "description": "Returns the collection symbol",
       "entry_point": 3077209249,
       "read_only": true
     },
-    "get_approved": {
-      "argument": "collections.get_approved_arguments",
-      "return": "collections.address_object",
-      "description": "Gets approved address for a token",
-      "entry_point": 1282609184,
+    "uri": {
+      "argument": "koinos.standards.kcs5.uri_arguments",
+      "return": "koinos.standards.kcs5.uri_result",
+      "description": "Returns the collection uri",
+      "entry_point": 1894111158,
       "read_only": true
     },
-    "is_approved_for_all": {
-      "argument": "collections.is_approved_for_all_arguments",
-      "return": "collections.bool_object",
-      "description": "Checks if an operator is approved by an owner",
-      "entry_point": 3886779621,
+    "token_uri": {
+      "argument": "koinos.standards.kcs5.token_uri_arguments",
+      "return": "koinos.standards.kcs5.token_uri_result",
+      "description": "Returns the token uri",
+      "entry_point": 1078291598,
       "read_only": true
     },
-    "total_supply": {
-      "argument": "collections.total_supply_arguments",
-      "return": "collections.uint64_object",
-      "description": "Returns the token's total supply",
-      "entry_point": 2967091508,
+    "get_info": {
+      "argument": "koinos.standards.kcs5.get_info_arguments",
+      "return": "koinos.standards.kcs5.get_info_results",
+      "description": "Returns the collection info",
+      "entry_point": 3179243600,
       "read_only": true
-    },
-    "royalties": {
-      "argument": "collections.royalties_arguments",
-      "return": "collections.royalties_result",
-      "description": "Returns collection royalties",
-      "entry_point": 921242832,
-      "read_only": true
-    },
-    "set_royalties": {
-      "argument": "collections.set_royalties_arguments",
-      "return": "collections.empty_object",
-      "description": "Returns collection royalties",
-      "entry_point": 995865963,
-      "read_only": false
     },
     "owner": {
-      "argument": "collections.owner_arguments",
-      "return": "collections.address_object",
+      "argument": "koinos.standards.kcs5.owner_arguments",
+      "return": "koinos.standards.kcs5.owner_result",
       "description": "Returns collection owner",
       "entry_point": 1276127593,
       "read_only": true
     },
-    "transfer_ownership": {
-      "argument": "collections.transfer_ownership_arguments",
-      "return": "collections.empty_object",
-      "description": "Transfer ownership",
-      "entry_point": 961275650,
-      "read_only": false
+    "total_supply": {
+      "argument": "koinos.standards.kcs5.total_supply_arguments",
+      "return": "koinos.standards.kcs5.total_supply_result",
+      "description": "Returns the collection total supply",
+      "entry_point": 2967091508,
+      "read_only": true
+    },
+    "royalties": {
+      "argument": "koinos.standards.kcs5.royalties_arguments",
+      "return": "koinos.standards.kcs5.royalties_result",
+      "description": "Returns collection royalties",
+      "entry_point": 921242832,
+      "read_only": true
     },
     "balance_of": {
-      "argument": "collections.balance_of_arguments",
-      "return": "collections.uint64_object",
+      "argument": "koinos.standards.kcs5.balance_of_arguments",
+      "return": "koinos.standards.kcs5.balance_of_result",
       "description": "Gets the balance of an owner",
       "entry_point": 1550980247,
       "read_only": true
     },
     "owner_of": {
-      "argument": "collections.owner_of_arguments",
-      "return": "collections.address_object",
+      "argument": "koinos.standards.kcs5.owner_of_arguments",
+      "return": "koinos.standards.kcs5.owner_of_result",
       "description": "Gets the owner of a token",
       "entry_point": 3982608455,
       "read_only": true
     },
-    "mint": {
-      "argument": "collections.mint_arguments",
-      "return": "collections.empty_object",
-      "description": "Mints a new token",
-      "entry_point": 3698268091,
+    "metadata_of": {
+      "argument": "koinos.standards.kcs5.metadata_of_arguments",
+      "return": "koinos.standards.kcs5.metadata_of_result",
+      "description": "Gets the metadata of a token",
+      "entry_point": 392990591,
+      "read_only": true
+    },
+    "get_tokens": {
+      "argument": "koinos.standards.kcs5.get_tokens_arguments",
+      "return": "koinos.standards.kcs5.get_tokens_result",
+      "description": "Gets tokens in a collection",
+      "entry_point": 2103140055,
+      "read_only": true
+    },
+    "get_tokens_by_owner": {
+      "argument": "koinos.standards.kcs5.get_tokens_by_owner_arguments",
+      "return": "koinos.standards.kcs5.get_tokens_by_owner_result",
+      "description": "Gets tokens for an owner in a collection",
+      "entry_point": 4229163893,
+      "read_only": true
+    },
+    "get_approved": {
+      "argument": "koinos.standards.kcs5.get_approved_arguments",
+      "return": "koinos.standards.kcs5.get_approved_result",
+      "description": "Gets approved address for a token",
+      "entry_point": 1282609184,
+      "read_only": true
+    },
+    "is_approved_for_all": {
+      "argument": "koinos.standards.kcs5.is_approved_for_all_arguments",
+      "return": "koinos.standards.kcs5.is_approved_for_all_result",
+      "description": "Checks if an operator is approved by an owner",
+      "entry_point": 3886779621,
+      "read_only": true
+    },
+    "get_operator_approvals": {
+      "argument": "koinos.standards.kcs5.get_operator_approvals_arguments",
+      "return": "koinos.standards.kcs5.get_operator_approvals_result",
+      "description": "Returns accounts allowed to operate NFTs for an owner",
+      "entry_point": 3676042766,
+      "read_only": true
+    },
+    "transfer_ownership": {
+      "argument": "koinos.standards.kcs5.transfer_ownership_arguments",
+      "return": "koinos.standards.kcs5.transfer_ownership_result",
+      "description": "Transfer ownership",
+      "entry_point": 961275650,
       "read_only": false
     },
-    "burn": {
-      "argument": "collections.burn_arguments",
-      "return": "collections.empty_object",
-      "description": "Burns an existing token",
-      "entry_point": 2241834181,
+    "set_royalties": {
+      "argument": "koinos.standards.kcs5.set_royalties_arguments",
+      "return": "koinos.standards.kcs5.set_royalties_result",
+      "description": "Sets collection royalties",
+      "entry_point": 995865963,
       "read_only": false
     },
-    "transfer": {
-      "argument": "collections.transfer_arguments",
-      "return": "collections.empty_object",
-      "description": "Transfers a token",
-      "entry_point": 670398154,
+    "set_metadata": {
+      "argument": "koinos.standards.kcs5.set_metadata_arguments",
+      "return": "koinos.standards.kcs5.set_metadata_result",
+      "description": "Sets collection royalties",
+      "entry_point": 1029287705,
       "read_only": false
     },
     "approve": {
-      "argument": "collections.approve_arguments",
-      "return": "collections.empty_object",
+      "argument": "koinos.standards.kcs5.approve_arguments",
+      "return": "koinos.standards.kcs5.approve_result",
       "description": "Approves an address to transfer a token",
       "entry_point": 1960973952,
       "read_only": false
     },
     "set_approval_for_all": {
-      "argument": "collections.set_approval_for_all_arguments",
-      "return": "collections.empty_object",
+      "argument": "koinos.standards.kcs5.set_approval_for_all_arguments",
+      "return": "koinos.standards.kcs5.set_approval_for_all_result",
       "description": "Approves or revokes an address to operate on all tokens owned by caller",
       "entry_point": 541336086,
       "read_only": false
+    },
+    "mint": {
+      "argument": "koinos.standards.kcs5.mint_arguments",
+      "return": "koinos.standards.kcs5.mint_result",
+      "description": "Mints a new token",
+      "entry_point": 3698268091,
+      "read_only": false
+    },
+    "transfer": {
+      "argument": "koinos.standards.kcs5.transfer_arguments",
+      "return": "koinos.standards.kcs5.transfer_result",
+      "description": "Transfers a token",
+      "entry_point": 670398154,
+      "read_only": false
+    },
+    "burn": {
+      "argument": "koinos.standards.kcs5.burn_arguments",
+      "return": "koinos.standards.kcs5.burn_result",
+      "description": "Burns an existing token",
+      "entry_point": 2241834181,
+      "read_only": false
     }
   },
-  "types": {
-    "nested": {
-      "collections": {
-        "nested": {
-          "empty_object": {
-            "fields": {}
-          },
-          "string_object": {
-            "fields": {
-              "value": {
-                "type": "string",
-                "id": 1
-              }
-            }
-          },
-          "uint64_object": {
-            "fields": {
-              "value": {
-                "type": "uint64",
-                "id": 1,
-                "options": {
-                  "jstype": "JS_STRING"
-                }
-              }
-            }
-          },
-          "bool_object": {
-            "fields": {
-              "value": {
-                "type": "bool",
-                "id": 1
-              }
-            }
-          },
-          "address_object": {
-            "fields": {
-              "value": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              }
-            }
-          },
-          "token_object": {
-            "fields": {
-              "owner": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              }
-            }
-          },
-          "balance_object": {
-            "fields": {
-              "value": {
-                "type": "uint64",
-                "id": 1,
-                "options": {
-                  "jstype": "JS_STRING"
-                }
-              }
-            }
-          },
-          "royalty_object": {
-            "fields": {
-              "amount": {
-                "type": "uint64",
-                "id": 1,
-                "options": {
-                  "jstype": "JS_STRING"
-                }
-              },
-              "address": {
-                "type": "bytes",
-                "id": 2,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              }
-            }
-          },
-          "config_object": {
-            "fields": {
-              "owner": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "royalties": {
-                "rule": "repeated",
-                "type": "royalty_object",
-                "id": 2
-              }
-            }
-          },
-          "token_approval_object": {
-            "fields": {
-              "address": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              }
-            }
-          },
-          "operator_approval_object": {
-            "fields": {
-              "approved": {
-                "type": "bool",
-                "id": 1
-              }
-            }
-          },
-          "name_arguments": {
-            "fields": {}
-          },
-          "uri_arguments": {
-            "fields": {}
-          },
-          "symbol_arguments": {
-            "fields": {}
-          },
-          "get_approved_arguments": {
-            "fields": {
-              "token_id": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "HEX"
-                }
-              }
-            }
-          },
-          "is_approved_for_all_arguments": {
-            "fields": {
-              "owner": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "operator": {
-                "type": "bytes",
-                "id": 2,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              }
-            }
-          },
-          "total_supply_arguments": {
-            "fields": {}
-          },
-          "royalties_arguments": {
-            "fields": {}
-          },
-          "royalties_result": {
-            "fields": {
-              "value": {
-                "rule": "repeated",
-                "type": "royalty_object",
-                "id": 1
-              }
-            }
-          },
-          "set_royalties_arguments": {
-            "fields": {
-              "value": {
-                "rule": "repeated",
-                "type": "royalty_object",
-                "id": 1
-              }
-            }
-          },
-          "owner_arguments": {
-            "fields": {}
-          },
-          "transfer_ownership_arguments": {
-            "fields": {
-              "owner": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              }
-            }
-          },
-          "balance_of_arguments": {
-            "fields": {
-              "owner": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              }
-            }
-          },
-          "owner_of_arguments": {
-            "fields": {
-              "token_id": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "HEX"
-                }
-              }
-            }
-          },
-          "mint_arguments": {
-            "fields": {
-              "to": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "number_tokens_to_mint": {
-                "type": "uint64",
-                "id": 2,
-                "options": {
-                  "jstype": "JS_STRING"
-                }
-              }
-            }
-          },
-          "burn_arguments": {
-            "fields": {
-              "from": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "token_id": {
-                "type": "bytes",
-                "id": 2,
-                "options": {
-                  "(koinos.btype)": "HEX"
-                }
-              }
-            }
-          },
-          "transfer_arguments": {
-            "fields": {
-              "from": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "to": {
-                "type": "bytes",
-                "id": 2,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "token_id": {
-                "type": "bytes",
-                "id": 3,
-                "options": {
-                  "(koinos.btype)": "HEX"
-                }
-              }
-            }
-          },
-          "approve_arguments": {
-            "fields": {
-              "approver_address": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "to": {
-                "type": "bytes",
-                "id": 2,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "token_id": {
-                "type": "bytes",
-                "id": 3,
-                "options": {
-                  "(koinos.btype)": "HEX"
-                }
-              }
-            }
-          },
-          "set_approval_for_all_arguments": {
-            "fields": {
-              "approver_address": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "operator_address": {
-                "type": "bytes",
-                "id": 2,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "approved": {
-                "type": "bool",
-                "id": 3
-              }
-            }
-          },
-          "mint_event": {
-            "fields": {
-              "to": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "token_id": {
-                "type": "bytes",
-                "id": 2,
-                "options": {
-                  "(koinos.btype)": "HEX"
-                }
-              }
-            }
-          },
-          "owner_event": {
-            "fields": {
-              "from": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "to": {
-                "type": "bytes",
-                "id": 2,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              }
-            }
-          },
-          "royalties_event": {
-            "fields": {
-              "value": {
-                "rule": "repeated",
-                "type": "royalty_object",
-                "id": 1
-              }
-            }
-          },
-          "burn_event": {
-            "fields": {
-              "from": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "token_id": {
-                "type": "bytes",
-                "id": 2,
-                "options": {
-                  "(koinos.btype)": "HEX"
-                }
-              }
-            }
-          },
-          "transfer_event": {
-            "fields": {
-              "from": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "to": {
-                "type": "bytes",
-                "id": 2,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "token_id": {
-                "type": "bytes",
-                "id": 3,
-                "options": {
-                  "(koinos.btype)": "HEX"
-                }
-              }
-            }
-          },
-          "operator_approval_event": {
-            "fields": {
-              "approver_address": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "operator_address": {
-                "type": "bytes",
-                "id": 2,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "approved": {
-                "type": "bool",
-                "id": 3
-              }
-            }
-          },
-          "token_approval_event": {
-            "fields": {
-              "approver_address": {
-                "type": "bytes",
-                "id": 1,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "to": {
-                "type": "bytes",
-                "id": 2,
-                "options": {
-                  "(koinos.btype)": "ADDRESS"
-                }
-              },
-              "token_id": {
-                "type": "bytes",
-                "id": 3,
-                "options": {
-                  "(koinos.btype)": "HEX"
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
+  "types": "CsM7CiBnb29nbGUvcHJvdG9idWYvZGVzY3JpcHRvci5wcm90bxIPZ29vZ2xlLnByb3RvYnVmIk0KEUZpbGVEZXNjcmlwdG9yU2V0EjgKBGZpbGUYASADKAsyJC5nb29nbGUucHJvdG9idWYuRmlsZURlc2NyaXB0b3JQcm90b1IEZmlsZSLkBAoTRmlsZURlc2NyaXB0b3JQcm90bxISCgRuYW1lGAEgASgJUgRuYW1lEhgKB3BhY2thZ2UYAiABKAlSB3BhY2thZ2USHgoKZGVwZW5kZW5jeRgDIAMoCVIKZGVwZW5kZW5jeRIrChFwdWJsaWNfZGVwZW5kZW5jeRgKIAMoBVIQcHVibGljRGVwZW5kZW5jeRInCg93ZWFrX2RlcGVuZGVuY3kYCyADKAVSDndlYWtEZXBlbmRlbmN5EkMKDG1lc3NhZ2VfdHlwZRgEIAMoCzIgLmdvb2dsZS5wcm90b2J1Zi5EZXNjcmlwdG9yUHJvdG9SC21lc3NhZ2VUeXBlEkEKCWVudW1fdHlwZRgFIAMoCzIkLmdvb2dsZS5wcm90b2J1Zi5FbnVtRGVzY3JpcHRvclByb3RvUghlbnVtVHlwZRJBCgdzZXJ2aWNlGAYgAygLMicuZ29vZ2xlLnByb3RvYnVmLlNlcnZpY2VEZXNjcmlwdG9yUHJvdG9SB3NlcnZpY2USQwoJZXh0ZW5zaW9uGAcgAygLMiUuZ29vZ2xlLnByb3RvYnVmLkZpZWxkRGVzY3JpcHRvclByb3RvUglleHRlbnNpb24SNgoHb3B0aW9ucxgIIAEoCzIcLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9uc1IHb3B0aW9ucxJJChBzb3VyY2VfY29kZV9pbmZvGAkgASgLMh8uZ29vZ2xlLnByb3RvYnVmLlNvdXJjZUNvZGVJbmZvUg5zb3VyY2VDb2RlSW5mbxIWCgZzeW50YXgYDCABKAlSBnN5bnRheCK5BgoPRGVzY3JpcHRvclByb3RvEhIKBG5hbWUYASABKAlSBG5hbWUSOwoFZmllbGQYAiADKAsyJS5nb29nbGUucHJvdG9idWYuRmllbGREZXNjcmlwdG9yUHJvdG9SBWZpZWxkEkMKCWV4dGVuc2lvbhgGIAMoCzIlLmdvb2dsZS5wcm90b2J1Zi5GaWVsZERlc2NyaXB0b3JQcm90b1IJZXh0ZW5zaW9uEkEKC25lc3RlZF90eXBlGAMgAygLMiAuZ29vZ2xlLnByb3RvYnVmLkRlc2NyaXB0b3JQcm90b1IKbmVzdGVkVHlwZRJBCgllbnVtX3R5cGUYBCADKAsyJC5nb29nbGUucHJvdG9idWYuRW51bURlc2NyaXB0b3JQcm90b1IIZW51bVR5cGUSWAoPZXh0ZW5zaW9uX3JhbmdlGAUgAygLMi8uZ29vZ2xlLnByb3RvYnVmLkRlc2NyaXB0b3JQcm90by5FeHRlbnNpb25SYW5nZVIOZXh0ZW5zaW9uUmFuZ2USRAoKb25lb2ZfZGVjbBgIIAMoCzIlLmdvb2dsZS5wcm90b2J1Zi5PbmVvZkRlc2NyaXB0b3JQcm90b1IJb25lb2ZEZWNsEjkKB29wdGlvbnMYByABKAsyHy5nb29nbGUucHJvdG9idWYuTWVzc2FnZU9wdGlvbnNSB29wdGlvbnMSVQoOcmVzZXJ2ZWRfcmFuZ2UYCSADKAsyLi5nb29nbGUucHJvdG9idWYuRGVzY3JpcHRvclByb3RvLlJlc2VydmVkUmFuZ2VSDXJlc2VydmVkUmFuZ2USIwoNcmVzZXJ2ZWRfbmFtZRgKIAMoCVIMcmVzZXJ2ZWROYW1lGnoKDkV4dGVuc2lvblJhbmdlEhQKBXN0YXJ0GAEgASgFUgVzdGFydBIQCgNlbmQYAiABKAVSA2VuZBJACgdvcHRpb25zGAMgASgLMiYuZ29vZ2xlLnByb3RvYnVmLkV4dGVuc2lvblJhbmdlT3B0aW9uc1IHb3B0aW9ucxo3Cg1SZXNlcnZlZFJhbmdlEhQKBXN0YXJ0GAEgASgFUgVzdGFydBIQCgNlbmQYAiABKAVSA2VuZCJ8ChVFeHRlbnNpb25SYW5nZU9wdGlvbnMSWAoUdW5pbnRlcnByZXRlZF9vcHRpb24Y5wcgAygLMiQuZ29vZ2xlLnByb3RvYnVmLlVuaW50ZXJwcmV0ZWRPcHRpb25SE3VuaW50ZXJwcmV0ZWRPcHRpb24qCQjoBxCAgICAAiLBBgoURmllbGREZXNjcmlwdG9yUHJvdG8SEgoEbmFtZRgBIAEoCVIEbmFtZRIWCgZudW1iZXIYAyABKAVSBm51bWJlchJBCgVsYWJlbBgEIAEoDjIrLmdvb2dsZS5wcm90b2J1Zi5GaWVsZERlc2NyaXB0b3JQcm90by5MYWJlbFIFbGFiZWwSPgoEdHlwZRgFIAEoDjIqLmdvb2dsZS5wcm90b2J1Zi5GaWVsZERlc2NyaXB0b3JQcm90by5UeXBlUgR0eXBlEhsKCXR5cGVfbmFtZRgGIAEoCVIIdHlwZU5hbWUSGgoIZXh0ZW5kZWUYAiABKAlSCGV4dGVuZGVlEiMKDWRlZmF1bHRfdmFsdWUYByABKAlSDGRlZmF1bHRWYWx1ZRIfCgtvbmVvZl9pbmRleBgJIAEoBVIKb25lb2ZJbmRleBIbCglqc29uX25hbWUYCiABKAlSCGpzb25OYW1lEjcKB29wdGlvbnMYCCABKAsyHS5nb29nbGUucHJvdG9idWYuRmllbGRPcHRpb25zUgdvcHRpb25zEicKD3Byb3RvM19vcHRpb25hbBgRIAEoCFIOcHJvdG8zT3B0aW9uYWwitgIKBFR5cGUSDwoLVFlQRV9ET1VCTEUQARIOCgpUWVBFX0ZMT0FUEAISDgoKVFlQRV9JTlQ2NBADEg8KC1RZUEVfVUlOVDY0EAQSDgoKVFlQRV9JTlQzMhAFEhAKDFRZUEVfRklYRUQ2NBAGEhAKDFRZUEVfRklYRUQzMhAHEg0KCVRZUEVfQk9PTBAIEg8KC1RZUEVfU1RSSU5HEAkSDgoKVFlQRV9HUk9VUBAKEhAKDFRZUEVfTUVTU0FHRRALEg4KClRZUEVfQllURVMQDBIPCgtUWVBFX1VJTlQzMhANEg0KCVRZUEVfRU5VTRAOEhEKDVRZUEVfU0ZJWEVEMzIQDxIRCg1UWVBFX1NGSVhFRDY0EBASDwoLVFlQRV9TSU5UMzIQERIPCgtUWVBFX1NJTlQ2NBASIkMKBUxhYmVsEhIKDkxBQkVMX09QVElPTkFMEAESEgoOTEFCRUxfUkVRVUlSRUQQAhISCg5MQUJFTF9SRVBFQVRFRBADImMKFE9uZW9mRGVzY3JpcHRvclByb3RvEhIKBG5hbWUYASABKAlSBG5hbWUSNwoHb3B0aW9ucxgCIAEoCzIdLmdvb2dsZS5wcm90b2J1Zi5PbmVvZk9wdGlvbnNSB29wdGlvbnMi4wIKE0VudW1EZXNjcmlwdG9yUHJvdG8SEgoEbmFtZRgBIAEoCVIEbmFtZRI/CgV2YWx1ZRgCIAMoCzIpLmdvb2dsZS5wcm90b2J1Zi5FbnVtVmFsdWVEZXNjcmlwdG9yUHJvdG9SBXZhbHVlEjYKB29wdGlvbnMYAyABKAsyHC5nb29nbGUucHJvdG9idWYuRW51bU9wdGlvbnNSB29wdGlvbnMSXQoOcmVzZXJ2ZWRfcmFuZ2UYBCADKAsyNi5nb29nbGUucHJvdG9idWYuRW51bURlc2NyaXB0b3JQcm90by5FbnVtUmVzZXJ2ZWRSYW5nZVINcmVzZXJ2ZWRSYW5nZRIjCg1yZXNlcnZlZF9uYW1lGAUgAygJUgxyZXNlcnZlZE5hbWUaOwoRRW51bVJlc2VydmVkUmFuZ2USFAoFc3RhcnQYASABKAVSBXN0YXJ0EhAKA2VuZBgCIAEoBVIDZW5kIoMBChhFbnVtVmFsdWVEZXNjcmlwdG9yUHJvdG8SEgoEbmFtZRgBIAEoCVIEbmFtZRIWCgZudW1iZXIYAiABKAVSBm51bWJlchI7CgdvcHRpb25zGAMgASgLMiEuZ29vZ2xlLnByb3RvYnVmLkVudW1WYWx1ZU9wdGlvbnNSB29wdGlvbnMipwEKFlNlcnZpY2VEZXNjcmlwdG9yUHJvdG8SEgoEbmFtZRgBIAEoCVIEbmFtZRI+CgZtZXRob2QYAiADKAsyJi5nb29nbGUucHJvdG9idWYuTWV0aG9kRGVzY3JpcHRvclByb3RvUgZtZXRob2QSOQoHb3B0aW9ucxgDIAEoCzIfLmdvb2dsZS5wcm90b2J1Zi5TZXJ2aWNlT3B0aW9uc1IHb3B0aW9ucyKJAgoVTWV0aG9kRGVzY3JpcHRvclByb3RvEhIKBG5hbWUYASABKAlSBG5hbWUSHQoKaW5wdXRfdHlwZRgCIAEoCVIJaW5wdXRUeXBlEh8KC291dHB1dF90eXBlGAMgASgJUgpvdXRwdXRUeXBlEjgKB29wdGlvbnMYBCABKAsyHi5nb29nbGUucHJvdG9idWYuTWV0aG9kT3B0aW9uc1IHb3B0aW9ucxIwChBjbGllbnRfc3RyZWFtaW5nGAUgASgIOgVmYWxzZVIPY2xpZW50U3RyZWFtaW5nEjAKEHNlcnZlcl9zdHJlYW1pbmcYBiABKAg6BWZhbHNlUg9zZXJ2ZXJTdHJlYW1pbmcikQkKC0ZpbGVPcHRpb25zEiEKDGphdmFfcGFja2FnZRgBIAEoCVILamF2YVBhY2thZ2USMAoUamF2YV9vdXRlcl9jbGFzc25hbWUYCCABKAlSEmphdmFPdXRlckNsYXNzbmFtZRI1ChNqYXZhX211bHRpcGxlX2ZpbGVzGAogASgIOgVmYWxzZVIRamF2YU11bHRpcGxlRmlsZXMSRAodamF2YV9nZW5lcmF0ZV9lcXVhbHNfYW5kX2hhc2gYFCABKAhCAhgBUhlqYXZhR2VuZXJhdGVFcXVhbHNBbmRIYXNoEjoKFmphdmFfc3RyaW5nX2NoZWNrX3V0ZjgYGyABKAg6BWZhbHNlUhNqYXZhU3RyaW5nQ2hlY2tVdGY4ElMKDG9wdGltaXplX2ZvchgJIAEoDjIpLmdvb2dsZS5wcm90b2J1Zi5GaWxlT3B0aW9ucy5PcHRpbWl6ZU1vZGU6BVNQRUVEUgtvcHRpbWl6ZUZvchIdCgpnb19wYWNrYWdlGAsgASgJUglnb1BhY2thZ2USNQoTY2NfZ2VuZXJpY19zZXJ2aWNlcxgQIAEoCDoFZmFsc2VSEWNjR2VuZXJpY1NlcnZpY2VzEjkKFWphdmFfZ2VuZXJpY19zZXJ2aWNlcxgRIAEoCDoFZmFsc2VSE2phdmFHZW5lcmljU2VydmljZXMSNQoTcHlfZ2VuZXJpY19zZXJ2aWNlcxgSIAEoCDoFZmFsc2VSEXB5R2VuZXJpY1NlcnZpY2VzEjcKFHBocF9nZW5lcmljX3NlcnZpY2VzGCogASgIOgVmYWxzZVIScGhwR2VuZXJpY1NlcnZpY2VzEiUKCmRlcHJlY2F0ZWQYFyABKAg6BWZhbHNlUgpkZXByZWNhdGVkEi4KEGNjX2VuYWJsZV9hcmVuYXMYHyABKAg6BHRydWVSDmNjRW5hYmxlQXJlbmFzEioKEW9iamNfY2xhc3NfcHJlZml4GCQgASgJUg9vYmpjQ2xhc3NQcmVmaXgSKQoQY3NoYXJwX25hbWVzcGFjZRglIAEoCVIPY3NoYXJwTmFtZXNwYWNlEiEKDHN3aWZ0X3ByZWZpeBgnIAEoCVILc3dpZnRQcmVmaXgSKAoQcGhwX2NsYXNzX3ByZWZpeBgoIAEoCVIOcGhwQ2xhc3NQcmVmaXgSIwoNcGhwX25hbWVzcGFjZRgpIAEoCVIMcGhwTmFtZXNwYWNlEjQKFnBocF9tZXRhZGF0YV9uYW1lc3BhY2UYLCABKAlSFHBocE1ldGFkYXRhTmFtZXNwYWNlEiEKDHJ1YnlfcGFja2FnZRgtIAEoCVILcnVieVBhY2thZ2USWAoUdW5pbnRlcnByZXRlZF9vcHRpb24Y5wcgAygLMiQuZ29vZ2xlLnByb3RvYnVmLlVuaW50ZXJwcmV0ZWRPcHRpb25SE3VuaW50ZXJwcmV0ZWRPcHRpb24iOgoMT3B0aW1pemVNb2RlEgkKBVNQRUVEEAESDQoJQ09ERV9TSVpFEAISEAoMTElURV9SVU5USU1FEAMqCQjoBxCAgICAAkoECCYQJyLjAgoOTWVzc2FnZU9wdGlvbnMSPAoXbWVzc2FnZV9zZXRfd2lyZV9mb3JtYXQYASABKAg6BWZhbHNlUhRtZXNzYWdlU2V0V2lyZUZvcm1hdBJMCh9ub19zdGFuZGFyZF9kZXNjcmlwdG9yX2FjY2Vzc29yGAIgASgIOgVmYWxzZVIcbm9TdGFuZGFyZERlc2NyaXB0b3JBY2Nlc3NvchIlCgpkZXByZWNhdGVkGAMgASgIOgVmYWxzZVIKZGVwcmVjYXRlZBIbCgltYXBfZW50cnkYByABKAhSCG1hcEVudHJ5ElgKFHVuaW50ZXJwcmV0ZWRfb3B0aW9uGOcHIAMoCzIkLmdvb2dsZS5wcm90b2J1Zi5VbmludGVycHJldGVkT3B0aW9uUhN1bmludGVycHJldGVkT3B0aW9uKgkI6AcQgICAgAJKBAgEEAVKBAgFEAZKBAgGEAdKBAgIEAlKBAgJEAoi4gMKDEZpZWxkT3B0aW9ucxJBCgVjdHlwZRgBIAEoDjIjLmdvb2dsZS5wcm90b2J1Zi5GaWVsZE9wdGlvbnMuQ1R5cGU6BlNUUklOR1IFY3R5cGUSFgoGcGFja2VkGAIgASgIUgZwYWNrZWQSRwoGanN0eXBlGAYgASgOMiQuZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucy5KU1R5cGU6CUpTX05PUk1BTFIGanN0eXBlEhkKBGxhenkYBSABKAg6BWZhbHNlUgRsYXp5EiUKCmRlcHJlY2F0ZWQYAyABKAg6BWZhbHNlUgpkZXByZWNhdGVkEhkKBHdlYWsYCiABKAg6BWZhbHNlUgR3ZWFrElgKFHVuaW50ZXJwcmV0ZWRfb3B0aW9uGOcHIAMoCzIkLmdvb2dsZS5wcm90b2J1Zi5VbmludGVycHJldGVkT3B0aW9uUhN1bmludGVycHJldGVkT3B0aW9uIi8KBUNUeXBlEgoKBlNUUklORxAAEggKBENPUkQQARIQCgxTVFJJTkdfUElFQ0UQAiI1CgZKU1R5cGUSDQoJSlNfTk9STUFMEAASDQoJSlNfU1RSSU5HEAESDQoJSlNfTlVNQkVSEAIqCQjoBxCAgICAAkoECAQQBSJzCgxPbmVvZk9wdGlvbnMSWAoUdW5pbnRlcnByZXRlZF9vcHRpb24Y5wcgAygLMiQuZ29vZ2xlLnByb3RvYnVmLlVuaW50ZXJwcmV0ZWRPcHRpb25SE3VuaW50ZXJwcmV0ZWRPcHRpb24qCQjoBxCAgICAAiLAAQoLRW51bU9wdGlvbnMSHwoLYWxsb3dfYWxpYXMYAiABKAhSCmFsbG93QWxpYXMSJQoKZGVwcmVjYXRlZBgDIAEoCDoFZmFsc2VSCmRlcHJlY2F0ZWQSWAoUdW5pbnRlcnByZXRlZF9vcHRpb24Y5wcgAygLMiQuZ29vZ2xlLnByb3RvYnVmLlVuaW50ZXJwcmV0ZWRPcHRpb25SE3VuaW50ZXJwcmV0ZWRPcHRpb24qCQjoBxCAgICAAkoECAUQBiKeAQoQRW51bVZhbHVlT3B0aW9ucxIlCgpkZXByZWNhdGVkGAEgASgIOgVmYWxzZVIKZGVwcmVjYXRlZBJYChR1bmludGVycHJldGVkX29wdGlvbhjnByADKAsyJC5nb29nbGUucHJvdG9idWYuVW5pbnRlcnByZXRlZE9wdGlvblITdW5pbnRlcnByZXRlZE9wdGlvbioJCOgHEICAgIACIpwBCg5TZXJ2aWNlT3B0aW9ucxIlCgpkZXByZWNhdGVkGCEgASgIOgVmYWxzZVIKZGVwcmVjYXRlZBJYChR1bmludGVycHJldGVkX29wdGlvbhjnByADKAsyJC5nb29nbGUucHJvdG9idWYuVW5pbnRlcnByZXRlZE9wdGlvblITdW5pbnRlcnByZXRlZE9wdGlvbioJCOgHEICAgIACIuACCg1NZXRob2RPcHRpb25zEiUKCmRlcHJlY2F0ZWQYISABKAg6BWZhbHNlUgpkZXByZWNhdGVkEnEKEWlkZW1wb3RlbmN5X2xldmVsGCIgASgOMi8uZ29vZ2xlLnByb3RvYnVmLk1ldGhvZE9wdGlvbnMuSWRlbXBvdGVuY3lMZXZlbDoTSURFTVBPVEVOQ1lfVU5LTk9XTlIQaWRlbXBvdGVuY3lMZXZlbBJYChR1bmludGVycHJldGVkX29wdGlvbhjnByADKAsyJC5nb29nbGUucHJvdG9idWYuVW5pbnRlcnByZXRlZE9wdGlvblITdW5pbnRlcnByZXRlZE9wdGlvbiJQChBJZGVtcG90ZW5jeUxldmVsEhcKE0lERU1QT1RFTkNZX1VOS05PV04QABITCg9OT19TSURFX0VGRkVDVFMQARIOCgpJREVNUE9URU5UEAIqCQjoBxCAgICAAiKaAwoTVW5pbnRlcnByZXRlZE9wdGlvbhJBCgRuYW1lGAIgAygLMi0uZ29vZ2xlLnByb3RvYnVmLlVuaW50ZXJwcmV0ZWRPcHRpb24uTmFtZVBhcnRSBG5hbWUSKQoQaWRlbnRpZmllcl92YWx1ZRgDIAEoCVIPaWRlbnRpZmllclZhbHVlEiwKEnBvc2l0aXZlX2ludF92YWx1ZRgEIAEoBFIQcG9zaXRpdmVJbnRWYWx1ZRIsChJuZWdhdGl2ZV9pbnRfdmFsdWUYBSABKANSEG5lZ2F0aXZlSW50VmFsdWUSIQoMZG91YmxlX3ZhbHVlGAYgASgBUgtkb3VibGVWYWx1ZRIhCgxzdHJpbmdfdmFsdWUYByABKAxSC3N0cmluZ1ZhbHVlEicKD2FnZ3JlZ2F0ZV92YWx1ZRgIIAEoCVIOYWdncmVnYXRlVmFsdWUaSgoITmFtZVBhcnQSGwoJbmFtZV9wYXJ0GAEgAigJUghuYW1lUGFydBIhCgxpc19leHRlbnNpb24YAiACKAhSC2lzRXh0ZW5zaW9uIqcCCg5Tb3VyY2VDb2RlSW5mbxJECghsb2NhdGlvbhgBIAMoCzIoLmdvb2dsZS5wcm90b2J1Zi5Tb3VyY2VDb2RlSW5mby5Mb2NhdGlvblIIbG9jYXRpb24azgEKCExvY2F0aW9uEhYKBHBhdGgYASADKAVCAhABUgRwYXRoEhYKBHNwYW4YAiADKAVCAhABUgRzcGFuEikKEGxlYWRpbmdfY29tbWVudHMYAyABKAlSD2xlYWRpbmdDb21tZW50cxIrChF0cmFpbGluZ19jb21tZW50cxgEIAEoCVIQdHJhaWxpbmdDb21tZW50cxI6ChlsZWFkaW5nX2RldGFjaGVkX2NvbW1lbnRzGAYgAygJUhdsZWFkaW5nRGV0YWNoZWRDb21tZW50cyLRAQoRR2VuZXJhdGVkQ29kZUluZm8STQoKYW5ub3RhdGlvbhgBIAMoCzItLmdvb2dsZS5wcm90b2J1Zi5HZW5lcmF0ZWRDb2RlSW5mby5Bbm5vdGF0aW9uUgphbm5vdGF0aW9uGm0KCkFubm90YXRpb24SFgoEcGF0aBgBIAMoBUICEAFSBHBhdGgSHwoLc291cmNlX2ZpbGUYAiABKAlSCnNvdXJjZUZpbGUSFAoFYmVnaW4YAyABKAVSBWJlZ2luEhAKA2VuZBgEIAEoBVIDZW5kQn4KE2NvbS5nb29nbGUucHJvdG9idWZCEERlc2NyaXB0b3JQcm90b3NIAVotZ29vZ2xlLmdvbGFuZy5vcmcvcHJvdG9idWYvdHlwZXMvZGVzY3JpcHRvcnBi+AEBogIDR1BCqgIaR29vZ2xlLlByb3RvYnVmLlJlZmxlY3Rpb24KuAIKFGtvaW5vcy9vcHRpb25zLnByb3RvEgZrb2lub3MaIGdvb2dsZS9wcm90b2J1Zi9kZXNjcmlwdG9yLnByb3RvKm0KCmJ5dGVzX3R5cGUSCgoGQkFTRTY0EAASCgoGQkFTRTU4EAESBwoDSEVYEAISDAoIQkxPQ0tfSUQQAxISCg5UUkFOU0FDVElPTl9JRBAEEg8KC0NPTlRSQUNUX0lEEAUSCwoHQUREUkVTUxAGOkwKBWJ0eXBlEh0uZ29vZ2xlLnByb3RvYnVmLkZpZWxkT3B0aW9ucxjQhgMgASgOMhIua29pbm9zLmJ5dGVzX3R5cGVSBWJ0eXBliAEBQjFaL2dpdGh1Yi5jb20va29pbm9zL2tvaW5vcy1wcm90by1nb2xhbmcvdjIva29pbm9zYgZwcm90bzMKuB8KG2tvaW5vcy9zdGFuZGFyZHMva2NzNS5wcm90bxIVa29pbm9zLnN0YW5kYXJkcy5rY3M1GhRrb2lub3Mvb3B0aW9ucy5wcm90byIQCg5uYW1lX2FyZ3VtZW50cyIjCgtuYW1lX3Jlc3VsdBIUCgV2YWx1ZRgBIAEoCVIFdmFsdWUiEgoQc3ltYm9sX2FyZ3VtZW50cyIlCg1zeW1ib2xfcmVzdWx0EhQKBXZhbHVlGAEgASgJUgV2YWx1ZSIPCg11cmlfYXJndW1lbnRzIiIKCnVyaV9yZXN1bHQSFAoFdmFsdWUYASABKAlSBXZhbHVlIjYKE3Rva2VuX3VyaV9hcmd1bWVudHMSHwoIdG9rZW5faWQYASABKAxCBIC1GAJSB3Rva2VuSWQiKAoQdG9rZW5fdXJpX3Jlc3VsdBIUCgV2YWx1ZRgBIAEoCVIFdmFsdWUiFAoSZ2V0X2luZm9fYXJndW1lbnRzInEKD2dldF9pbmZvX3Jlc3VsdBISCgRuYW1lGAEgASgJUgRuYW1lEhYKBnN5bWJvbBgCIAEoCVIGc3ltYm9sEhAKA3VyaRgDIAEoDVIDdXJpEiAKC2Rlc2NyaXB0aW9uGAQgASgJUgtkZXNjcmlwdGlvbiIRCg9vd25lcl9hcmd1bWVudHMiKgoMb3duZXJfcmVzdWx0EhoKBXZhbHVlGAEgASgMQgSAtRgGUgV2YWx1ZSIYChZ0b3RhbF9zdXBwbHlfYXJndW1lbnRzIi8KE3RvdGFsX3N1cHBseV9yZXN1bHQSGAoFdmFsdWUYASABKARCAjABUgV2YWx1ZSJNCgdyb3lhbHR5EiIKCnBlcmNlbnRhZ2UYASABKARCAjABUgpwZXJjZW50YWdlEh4KB2FkZHJlc3MYAiABKAxCBIC1GAZSB2FkZHJlc3MiFQoTcm95YWx0aWVzX2FyZ3VtZW50cyJIChByb3lhbHRpZXNfcmVzdWx0EjQKBXZhbHVlGAEgAygLMh4ua29pbm9zLnN0YW5kYXJkcy5rY3M1LnJveWFsdHlSBXZhbHVlIjIKFGJhbGFuY2Vfb2ZfYXJndW1lbnRzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lciItChFiYWxhbmNlX29mX3Jlc3VsdBIYCgV2YWx1ZRgBIAEoBEICMAFSBXZhbHVlIjUKEm93bmVyX29mX2FyZ3VtZW50cxIfCgh0b2tlbl9pZBgBIAEoDEIEgLUYAlIHdG9rZW5JZCItCg9vd25lcl9vZl9yZXN1bHQSGgoFdmFsdWUYASABKAxCBIC1GAZSBXZhbHVlIjgKFW1ldGFkYXRhX29mX2FyZ3VtZW50cxIfCgh0b2tlbl9pZBgBIAEoDEIEgLUYAlIHdG9rZW5JZCIqChJtZXRhZGF0YV9vZl9yZXN1bHQSFAoFdmFsdWUYASABKAlSBXZhbHVlImgKFGdldF90b2tlbnNfYXJndW1lbnRzEhoKBXN0YXJ0GAEgASgMQgSAtRgCUgVzdGFydBIUCgVsaW1pdBgCIAEoBVIFbGltaXQSHgoKZGVzY2VuZGluZxgDIAEoCFIKZGVzY2VuZGluZyIxChFnZXRfdG9rZW5zX3Jlc3VsdBIcCgZ2YWx1ZXMYASADKAxCBIC1GAJSBnZhbHVlcyKNAQodZ2V0X3Rva2Vuc19ieV9vd25lcl9hcmd1bWVudHMSGgoFb3duZXIYASABKAxCBIC1GAZSBW93bmVyEhoKBXN0YXJ0GAIgASgMQgSAtRgCUgVzdGFydBIUCgVsaW1pdBgDIAEoBVIFbGltaXQSHgoKZGVzY2VuZGluZxgEIAEoCFIKZGVzY2VuZGluZyI6ChpnZXRfdG9rZW5zX2J5X293bmVyX3Jlc3VsdBIcCgZ2YWx1ZXMYASADKAxCBIC1GAJSBnZhbHVlcyI5ChZnZXRfYXBwcm92ZWRfYXJndW1lbnRzEh8KCHRva2VuX2lkGAEgASgMQgSAtRgCUgd0b2tlbklkIjEKE2dldF9hcHByb3ZlZF9yZXN1bHQSGgoFdmFsdWUYASABKAxCBIC1GAZSBXZhbHVlIl0KHWlzX2FwcHJvdmVkX2Zvcl9hbGxfYXJndW1lbnRzEhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchIgCghvcGVyYXRvchgCIAEoDEIEgLUYBlIIb3BlcmF0b3IiMgoaaXNfYXBwcm92ZWRfZm9yX2FsbF9yZXN1bHQSFAoFdmFsdWUYASABKAhSBXZhbHVlIpABCiBnZXRfb3BlcmF0b3JfYXBwcm92YWxzX2FyZ3VtZW50cxIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISGgoFc3RhcnQYAiABKAxCBIC1GAZSBXN0YXJ0EhQKBWxpbWl0GAMgASgFUgVsaW1pdBIeCgpkZXNjZW5kaW5nGAQgASgIUgpkZXNjZW5kaW5nIl8KHWdldF9vcGVyYXRvcl9hcHByb3ZhbHNfcmVzdWx0EhoKBW93bmVyGAEgASgMQgSAtRgGUgVvd25lchIiCglvcGVyYXRvcnMYAiADKAxCBIC1GAZSCW9wZXJhdG9ycyI0Chx0cmFuc2Zlcl9vd25lcnNoaXBfYXJndW1lbnRzEhQKAnRvGAEgASgMQgSAtRgGUgJ0byIbChl0cmFuc2Zlcl9vd25lcnNoaXBfcmVzdWx0Ij0KC293bmVyX2V2ZW50EhgKBGZyb20YASABKAxCBIC1GAZSBGZyb20SFAoCdG8YAiABKAxCBIC1GAZSAnRvIk8KF3NldF9yb3lhbHRpZXNfYXJndW1lbnRzEjQKBXZhbHVlGAEgAygLMh4ua29pbm9zLnN0YW5kYXJkcy5rY3M1LnJveWFsdHlSBXZhbHVlIhYKFHNldF9yb3lhbHRpZXNfcmVzdWx0IkcKD3JveWFsdGllc19ldmVudBI0CgV2YWx1ZRgBIAMoCzIeLmtvaW5vcy5zdGFuZGFyZHMua2NzNS5yb3lhbHR5UgV2YWx1ZSJVChZzZXRfbWV0YWRhdGFfYXJndW1lbnRzEh8KCHRva2VuX2lkGAEgASgMQgSAtRgCUgd0b2tlbklkEhoKCG1ldGFkYXRhGAIgASgJUghtZXRhZGF0YSIVChNzZXRfbWV0YWRhdGFfcmVzdWx0IlEKEnNldF9tZXRhZGF0YV9ldmVudBIfCgh0b2tlbl9pZBgBIAEoDEIEgLUYAlIHdG9rZW5JZBIaCghtZXRhZGF0YRgCIAEoCVIIbWV0YWRhdGEiwQEKEWFwcHJvdmVfYXJndW1lbnRzEhwKBW93bmVyGAEgASgMQgYYAYC1GAZSBW93bmVyEiAKCG9wZXJhdG9yGAIgASgMQgSAtRgGUghvcGVyYXRvchIfCgh0b2tlbl9pZBgDIAEoDEIEgLUYAlIHdG9rZW5JZBIXCgRtZW1vGAQgASgJSABSBG1lbW+IAQESHQoHYXBwcm92ZRgFIAEoCEgBUgdhcHByb3ZliAEBQgcKBV9tZW1vQgoKCF9hcHByb3ZlIhAKDmFwcHJvdmVfcmVzdWx0IsIBChR0b2tlbl9hcHByb3ZhbF9ldmVudBIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISIAoIb3BlcmF0b3IYAiABKAxCBIC1GAZSCG9wZXJhdG9yEh8KCHRva2VuX2lkGAMgASgMQgSAtRgCUgd0b2tlbklkEhcKBG1lbW8YBCABKAlIAFIEbWVtb4gBARIdCgdhcHByb3ZlGAUgASgISAFSB2FwcHJvdmWIAQFCBwoFX21lbW9CCgoIX2FwcHJvdmUinAEKHnNldF9hcHByb3ZhbF9mb3JfYWxsX2FyZ3VtZW50cxIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISIAoIb3BlcmF0b3IYAiABKAxCBIC1GAZSCG9wZXJhdG9yEhoKCGFwcHJvdmVkGAMgASgIUghhcHByb3ZlZBIXCgRtZW1vGAQgASgJSABSBG1lbW+IAQFCBwoFX21lbW8iHQobc2V0X2FwcHJvdmFsX2Zvcl9hbGxfcmVzdWx0IpUBChdvcGVyYXRvcl9hcHByb3ZhbF9ldmVudBIaCgVvd25lchgBIAEoDEIEgLUYBlIFb3duZXISIAoIb3BlcmF0b3IYAiABKAxCBIC1GAZSCG9wZXJhdG9yEhoKCGFwcHJvdmVkGAMgASgIUghhcHByb3ZlZBIXCgRtZW1vGAQgASgJSABSBG1lbW+IAQFCBwoFX21lbW8iaQoObWludF9hcmd1bWVudHMSFAoCdG8YASABKAxCBIC1GAZSAnRvEh8KCHRva2VuX2lkGAIgASgMQgSAtRgCUgd0b2tlbklkEhcKBG1lbW8YAyABKAlIAFIEbWVtb4gBAUIHCgVfbWVtbyINCgttaW50X3Jlc3VsdCJlCgptaW50X2V2ZW50EhQKAnRvGAEgASgMQgSAtRgGUgJ0bxIfCgh0b2tlbl9pZBgCIAEoDEIEgLUYAlIHdG9rZW5JZBIXCgRtZW1vGAMgASgJSABSBG1lbW+IAQFCBwoFX21lbW8iiQEKEnRyYW5zZmVyX2FyZ3VtZW50cxIaCgRmcm9tGAEgASgMQgYYAYC1GAZSBGZyb20SFAoCdG8YAiABKAxCBIC1GAZSAnRvEh8KCHRva2VuX2lkGAMgASgMQgSAtRgCUgd0b2tlbklkEhcKBG1lbW8YBCABKAlIAFIEbWVtb4gBAUIHCgVfbWVtbyIRCg90cmFuc2Zlcl9yZXN1bHQigwEKDnRyYW5zZmVyX2V2ZW50EhgKBGZyb20YASABKAxCBIC1GAZSBGZyb20SFAoCdG8YAiABKAxCBIC1GAZSAnRvEh8KCHRva2VuX2lkGAMgASgMQgSAtRgCUgd0b2tlbklkEhcKBG1lbW8YBCABKAlIAFIEbWVtb4gBAUIHCgVfbWVtbyJTCg5idXJuX2FyZ3VtZW50cxIfCgh0b2tlbl9pZBgBIAEoDEIEgLUYAlIHdG9rZW5JZBIXCgRtZW1vGAIgASgJSABSBG1lbW+IAQFCBwoFX21lbW8iDQoLYnVybl9yZXN1bHQiaQoKYnVybl9ldmVudBIYCgRmcm9tGAEgASgMQgSAtRgGUgRmcm9tEh8KCHRva2VuX2lkGAIgASgMQgSAtRgCUgd0b2tlbklkEhcKBG1lbW8YAyABKAlIAFIEbWVtb4gBAUIHCgVfbWVtb0JAWj5naXRodWIuY29tL2tvaW5vcy9rb2lub3MtcHJvdG8tZ29sYW5nL3YyL2tvaW5vcy9zdGFuZGFyZHMva2NzNWIGcHJvdG8z"
 }

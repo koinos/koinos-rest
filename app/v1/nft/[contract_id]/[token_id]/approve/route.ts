@@ -1,6 +1,8 @@
+import { getAccountAddress } from '@/utils/addresses'
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
 import { getNFTContract } from '@/utils/tokens'
+import { requireParameters } from '@/utils/validation'
 
 /**
  * @swagger
@@ -76,7 +78,9 @@ export async function GET(
       const contract = await getNFTContract(contract_id)
 
       const { searchParams } = new URL(request.url)
-      const operator = searchParams.get('operator')
+      requireParameters(searchParams, 'operator')
+
+      const operator = await getAccountAddress(searchParams.get('operator')!)
       const approved = searchParams.get('approved')
       const memo = searchParams.get('memo')
 

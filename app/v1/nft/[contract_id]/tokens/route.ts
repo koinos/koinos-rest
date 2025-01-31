@@ -1,6 +1,7 @@
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
 import { getNFTContract } from '@/utils/tokens'
+import { requireParameters } from '@/utils/validation'
 
 /**
  * @swagger
@@ -21,9 +22,9 @@ import { getNFTContract } from '@/utils/tokens'
  *       in: query
  *       schema:
  *         type: string
- *         example: "\"0x00\""
- *       description: Token ID to start with
- *       required: true
+ *         example: "0x00"
+ *       description: Token ID to start with. Defaults to "0x00".
+ *       required: false
  *     - name: limit
  *       in: query
  *       schema:
@@ -65,13 +66,15 @@ export async function GET(request: Request, { params }: { params: { contract_id:
     const contract = getNFTContract(contract_id)
 
     const { searchParams } = new URL(request.url)
+    requireParameters(searchParams, 'limit')
+
     const start = searchParams.get('start')
     const limit = searchParams.get('limit')
     const descending = searchParams.get('descending')
 
     try {
       const { result } = await contract.functions.get_tokens({
-        start,
+        start: start ? start : '0x00',
         limit,
         descending: descending ? descending !== 'false' : false
       })

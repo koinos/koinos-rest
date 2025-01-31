@@ -1,6 +1,8 @@
+import { getAccountAddress } from '@/utils/addresses'
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
 import { getNFTContract } from '@/utils/tokens'
+import { requireParameters } from '@/utils/validation'
 
 /**
  * @swagger
@@ -28,9 +30,9 @@ import { getNFTContract } from '@/utils/tokens'
  *       in: query
  *       schema:
  *         type: string
- *         example: "\"0x00\""
- *       description: Token ID to start with
- *       required: true
+ *         example: "0x00"
+ *       description: Token ID to start with. Defaults to 0.
+ *       required: false
  *     - name: limit
  *       in: query
  *       schema:
@@ -69,10 +71,12 @@ import { getNFTContract } from '@/utils/tokens'
 export async function GET(request: Request, { params }: { params: { contract_id: string, account: string } }) {
   try {
     const contract_id = await getContractId(params.contract_id)
-    const owner = await getContractId(params.account)
+    const owner = await getAccountAddress(params.account)
     const contract = getNFTContract(contract_id)
 
     const { searchParams } = new URL(request.url)
+    requireParameters(searchParams, 'limit')
+
     const start = searchParams.get('start')
     const limit = searchParams.get('limit')
     const descending = searchParams.get('descending')
@@ -80,7 +84,7 @@ export async function GET(request: Request, { params }: { params: { contract_id:
     try {
       const { result } = await contract.functions.get_tokens_by_owner({
         owner,
-        start,
+        start: start ? start : '0x00',
         limit,
         descending: descending ? descending !== 'false' : false
       })

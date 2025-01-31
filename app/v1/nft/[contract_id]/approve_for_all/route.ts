@@ -1,6 +1,8 @@
+import { getAccountAddress } from '@/utils/addresses';
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
 import { getNFTContract } from '@/utils/tokens'
+import { requireParameters } from '@/utils/validation';
 
 /**
  * @swagger
@@ -35,8 +37,8 @@ import { getNFTContract } from '@/utils/tokens'
  *       in: query
  *       schema:
  *         type: boolean
- *       description: If the operator is approved
- *       required: true
+ *       description: If the operator is approved. (Defaults to true)
+ *       required: false
  *       example: true
  *     - name: memo
  *       in: query
@@ -65,7 +67,7 @@ import { getNFTContract } from '@/utils/tokens'
  *              call_contract:
  *                contract_id: 1EnaBDVTA5hqXokC2dDzt2JT5eHv1y7ff1
  *                entry_point: 541336086
- *                args: "ChkAY8ED6InNJ-LSQhg38spEhfSAWi8UN6HnEhkA7-Mh3yERswBXFp2UPvegxIiGAauR1O_zGAEiIjFBNlQ3dm1md3lHeDJMRDExUlJFd3Rjb1hyTHhHNnEycno="
+ *                args: "ChkAY8ED6InNJ-LSQhg38spEhfSAWi8UN6HnEhkA7-Mh3yERswBXFp2UPvegxIiGAauR1O_zGAE="
  */
 export async function GET(
     request: Request,
@@ -76,10 +78,12 @@ export async function GET(
       const contract = await getNFTContract(contract_id)
 
       const { searchParams } = new URL(request.url)
-      const owner = searchParams.get('owner')
-      const operator = searchParams.get('operator')
+      requireParameters(searchParams, 'owner', 'operator')
+
+      const owner = await getAccountAddress(searchParams.get('owner')!)
+      const operator = await getAccountAddress(searchParams.get('operator')!)
       const approved = searchParams.get('approved') === 'true'
-      const memo = searchParams.get('owner')
+      const memo = searchParams.get('memo')
 
       try {
         return Response.json(await contract.encodeOperation({

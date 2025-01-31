@@ -1,3 +1,4 @@
+import { getAccountAddress } from '@/utils/addresses'
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
 import { getNFTContract } from '@/utils/tokens'
@@ -50,10 +51,13 @@ export async function GET(request: Request, { params }: { params: { contract_id:
     const contract_id = await getContractId(params.contract_id)
     const contract = getNFTContract(contract_id)
 
+    const owner = await getAccountAddress(params.owner);
+    const operator = await getAccountAddress(params.operator);
+
     try {
       const { result } = await contract.functions.is_approved_for_all({
-        owner: params.owner,
-        operator: params.operator,
+        owner,
+        operator
       });
 
       if (result)

@@ -1,6 +1,8 @@
+import { getAccountAddress } from '@/utils/addresses';
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
 import { getNFTContract } from '@/utils/tokens'
+import { requireParameters } from '@/utils/validation';
 
 /**
  * @swagger
@@ -29,7 +31,7 @@ import { getNFTContract } from '@/utils/tokens'
  *       schema:
  *         type: string
  *       description: Koinos address to receive the NFT
- *       required: false
+ *       required: true
  *       example: 1LDDWoGgQ1CEa8B1d9GuziQ4fgbxcqawC3
  *     - name: memo
  *       in: query
@@ -69,7 +71,9 @@ export async function GET(
       const contract = await getNFTContract(contract_id)
 
       const { searchParams } = new URL(request.url)
-      const to = searchParams.get('to')
+      requireParameters(searchParams, 'to')
+
+      const to =getAccountAddress(searchParams.get('to')!)
       const memo = searchParams.get('memo')
 
       try {

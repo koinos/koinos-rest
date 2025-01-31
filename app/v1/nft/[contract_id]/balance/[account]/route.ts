@@ -1,3 +1,4 @@
+import { getAccountAddress } from '@/utils/addresses';
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
 import { getNFTContract } from '@/utils/tokens'
@@ -46,11 +47,11 @@ export async function GET(
     const contract_id = await getContractId(params.contract_id)
     const contract = getNFTContract(contract_id)
 
-    const account = await getContractId(params.account)
+    const owner = await getAccountAddress(params.account)
 
     try {
       const { result: balanceRes } = await contract.functions.balance_of({
-        owner: account
+        owner
       })
 
       if (balanceRes)

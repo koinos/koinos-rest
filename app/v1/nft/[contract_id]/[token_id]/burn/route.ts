@@ -62,7 +62,7 @@ export async function GET(
       const contract = await getNFTContract(contract_id)
 
       const { searchParams } = new URL(request.url)
-      const memo = searchParams.get('owner')
+      const memo = searchParams.get('memo')
 
       try {
         return Response.json(await contract.encodeOperation({

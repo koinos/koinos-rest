@@ -16,7 +16,7 @@ import { getNFTContract } from '@/utils/tokens'
  *          type: string
  *        description: The Koinos address of the NFT contract.
  *        required: true
- *        example: 1N2AhqGGticZ8hYmwNPWoroEBvTp3YGsLW
+ *        example: "@koinos.fun"
  *     responses:
  *       200:
  *        description: Total Supply of the Non Fungible Token
@@ -28,9 +28,8 @@ import { getNFTContract } from '@/utils/tokens'
  *                value:
  *                  type: string
  *            example:
- *              value: "350"
+ *              value: "6086"
  */
-
 export async function GET(request: Request, { params }: { params: { contract_id: string } }) {
   try {
     const contract_id = await getContractId(params.contract_id)
@@ -40,7 +39,9 @@ export async function GET(request: Request, { params }: { params: { contract_id:
     try {
       const { result } = await contract.functions.total_supply()
 
-      return Response.json(result)
+      if (result)
+        return Response.json(result)
+      return Response.json({value: "0"})
     } catch (error) {
       throw new AppError(getErrorMessage(error as Error))
     }

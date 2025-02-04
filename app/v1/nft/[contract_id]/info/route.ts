@@ -1,7 +1,6 @@
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
 import { getNFTContract } from '@/utils/tokens'
-import { utils } from 'koilib'
 
 /**
  * @swagger
@@ -17,7 +16,7 @@ import { utils } from 'koilib'
  *          type: string
  *        description: The Koinos address of the NFT contract.
  *        required: true
- *        example: 1N2AhqGGticZ8hYmwNPWoroEBvTp3YGsLW
+ *        example: "@koinos.fun"
  *     responses:
  *       200:
  *        description: Information about the Non Fungible Token
@@ -35,10 +34,10 @@ import { utils } from 'koilib'
  *                uri:
  *                  type: string
  *            example:
- *              name: "OG-REX"
- *              symbol: "REX"
- *              total_supply: "350"
- *              uri: "https://ogrex.io/api/rex/"
+ *              name: "koinos.fun"
+ *              symbol: "FUN"
+ *              total_supply: "6083"
+ *              uri: "https:://www.koinos.fun.metadata"
  */
 
 export async function GET(request: Request, { params }: { params: { contract_id: string } }) {
@@ -48,6 +47,13 @@ export async function GET(request: Request, { params }: { params: { contract_id:
     const contract = getNFTContract(contract_id)
 
     try {
+      try {
+        const { result: infoRes } = await contract.functions.get_info()
+
+        if (infoRes)
+          return Response.json(infoRes)
+      } catch (error) {}
+
       const { result: nameRes } = await contract.functions.name()
       const { result: symbolRes } = await contract.functions.symbol()
       const { result: totalSupplyRes } = await contract.functions.total_supply()
@@ -57,7 +63,7 @@ export async function GET(request: Request, { params }: { params: { contract_id:
         name: nameRes!.value,
         symbol: symbolRes!.value,
         total_supply: totalSupplyRes!.value,
-        uri: uriRes!.value
+        uri: uriRes ? uriRes!.value : undefined
       })
     } catch (error) {
       throw new AppError(getErrorMessage(error as Error))

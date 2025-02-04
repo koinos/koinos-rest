@@ -9,7 +9,7 @@ import { AppError, handleError, getErrorMessage } from '@/utils/errors'
  *   get:
  *     tags: [Contracts]
  *     summary: Call the contract contract using the method and arguments provided.
- *     description: Executes a specified method on the given contract. 
+ *     description: Executes a specified method on the given contract.
  *              If the method is a read call, the result is returned, without making any state changes.
  *              If the method is a write call, the associated operation is returned for inclusion in a transaction and no state changes are made.
  *     parameters:
@@ -102,7 +102,7 @@ export async function GET(
  *   post:
  *     tags: [Contracts]
  *     summary: Call the contract contract using the method and arguments provided.
- *     description: Executes a specified method on the given contract. 
+ *     description: Executes a specified method on the given contract.
  *              If the method is a read call, the result is returned, without making any state changes.
  *              If the method is a write call, the associated operation is returned for inclusion in a transaction and no state changes are made.
  *     parameters:

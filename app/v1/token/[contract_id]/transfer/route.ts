@@ -1,6 +1,8 @@
+import { getAccountAddress } from '@/utils/addresses'
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
 import { getTokenContract } from '@/utils/tokens'
+import { requireParameters } from '@/utils/validation'
 import { utils } from 'koilib'
 
 /**
@@ -68,9 +70,10 @@ export async function GET(
       const contract = await getTokenContract(contract_id)
 
       const { searchParams } = new URL(request.url)
+      requireParameters(searchParams, 'from', 'to', 'value');
 
-      const from = searchParams.get('from')
-      const to = searchParams.get('to')
+      const from = await getAccountAddress(searchParams.get('from')!)
+      const to = await getAccountAddress(searchParams.get('to')!)
       const value = searchParams.get('value')
       const memo = searchParams.get('memo')
 

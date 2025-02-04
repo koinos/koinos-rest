@@ -2,6 +2,7 @@ import { getAccountAddress } from '@/utils/addresses'
 import { getContractId } from '@/utils/contracts'
 import { AppError, getErrorMessage, handleError } from '@/utils/errors'
 import { getTokenContract } from '@/utils/tokens'
+import { requireParameters } from '@/utils/validation'
 import { utils } from 'koilib'
 
 /**
@@ -77,6 +78,7 @@ export async function GET(
     const account = await getAccountAddress(params.account)
 
     const { searchParams } = new URL(request.url)
+    requireParameters(searchParams, 'limit');
 
     const start = searchParams.get('start')
     const limit = searchParams.get('limit')

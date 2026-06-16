@@ -28,7 +28,7 @@ export async function middleware(request: NextRequest) {
 
   // CORS handler
   if (request.method === 'OPTIONS') {
-    return NextResponse.json(null, { status: 204, headers: corsHeaders })
+    return new NextResponse(null, { status: 204, headers: corsHeaders })
   }
 
   // rate limiter handler
